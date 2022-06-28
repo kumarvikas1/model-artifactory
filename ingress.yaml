@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: model-service
+  namespace: ml-demo
+  labels:
+    app: model-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/enable-cors: "true"
+spec:
+  rules:
+    - host: dev.xgboostdemo.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: model-service
+                port:
+                  number: 80
+            path: /model-service
+            pathType: Prefix

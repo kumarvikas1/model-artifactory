@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: model-service
+  namespace: ml-demo
+spec:
+  selector:
+    app: model-service
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  sessionAffinity: None
+  type: ClusterIP
